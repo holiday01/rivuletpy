@@ -62,7 +62,7 @@ class Soma(object):
         self.centroid[1] = self.centroid[1] - crop_region[1, 0]
         self.centroid[2] = self.centroid[2] - crop_region[2, 0]
 
-    def detect(self, bimg, simple=False, silent=False):
+    def detect(self, bimg, simple=False, silent=False,somapos=False):
         """
         Automatic detection of soma volume unless the iterations are given.
         """
@@ -92,6 +92,8 @@ class Soma(object):
         # somapos is array-like
             somapos = np.asarray(np.unravel_index(dt.argmax(), dt.shape))
         else:
+            print("Custom of the soma position")
+            somapos = list(map(float, somapos.strip('[]').split(',')))
             somapos = np.array(somapos)
 
         # Soma detection is required
