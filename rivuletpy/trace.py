@@ -25,7 +25,7 @@ class Tracer(object):
 class R2Tracer(Tracer):
 
     def __init__(self, quality=False, silent=False, speed=False,
-                 clean=False, non_stop=False, skeletonize=False):
+                 clean=False, non_stop=False, skeletonize=False,somapos=None):
         self._quality = quality
         self._bimg = None
         self._dilated_bimg = None
@@ -50,6 +50,7 @@ class R2Tracer(Tracer):
         self._non_stop = non_stop
         self.skeletonize = skeletonize
         self._eps = 1e-5
+        self.somapos = somapos
 
     def trace(self, img, threshold):
         '''
@@ -61,7 +62,7 @@ class R2Tracer(Tracer):
         if not self._silent:
             print('(1) -- Detecting Soma...', end='')
         self._soma = Soma()
-        self._soma.detect(self._bimg, not self._quality, self._silent)
+        self._soma.detect(self._bimg, not self._quality, self._silent,self.somapos)
         self._prep()
 
         # Iterative Back Tracking with Erasing
