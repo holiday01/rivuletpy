@@ -92,7 +92,7 @@ class Soma(object):
         # somapos is array-like
             somapos = np.asarray(np.unravel_index(dt.argmax(), dt.shape))
         else:
-            somapos = somapos
+            somapos = np.array(somapos)
 
         # Soma detection is required
         if not simple:
