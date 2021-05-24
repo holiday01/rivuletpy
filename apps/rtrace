@@ -52,6 +52,13 @@ if __name__ == '__main__':
         type=float,
         default=1.,
         help='The factor to zoom the image to speed up the whole thing. Default 1.')
+    parser.add_argument(
+        '-p',
+        '--soma_position',
+        type=str,
+        default=None,
+        help='x: x-axis, y: y-axis, z: stack of the images. Example, [0,0,1]')
+
 
     # Arguments for soma detection
     parser.add_argument('--save-soma', dest='save_soma', action='store_true',
@@ -132,7 +139,8 @@ if __name__ == '__main__':
                       speed=args.speed,
                       clean=args.clean,
                       non_stop=args.non_stop,
-                      skeletonize=args.skeletonize)
+                      skeletonize=args.skeletonize,
+                     somapos= arg.soma_position)
     swc, soma = tracer.trace(img, args.threshold)
     print('-- Finshed: %.2f sec.' % (time.time() - starttime))
     
