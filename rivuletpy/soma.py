@@ -37,6 +37,7 @@ class Soma(object):
         self.centroid = None
         self.radius = 0
         self.mask = None
+        self.somapos = None
 
     def simple_mask(self, bimg):
         '''
@@ -65,7 +66,7 @@ class Soma(object):
         """
         Automatic detection of soma volume unless the iterations are given.
         """
-
+        self.somapos = somapos
         # Smooth iterations
         smoothing = 1
         # A float number controls the weight of internal energy
@@ -83,12 +84,15 @@ class Soma(object):
         # the type of somaradius is float64
         # somaradius is just a float number
         somaradius = dt.max()
-
+        
+        if somapos is None:
         # somapos : the coordinate of estimated soma centroid
         # the type of somapos is int64
         # the shape of somapos is (3,)
         # somapos is array-like
-        somapos = np.asarray(np.unravel_index(dt.argmax(), dt.shape))
+            somapos = np.asarray(np.unravel_index(dt.argmax(), dt.shape))
+        else:
+            somapos = somapos
 
         # Soma detection is required
         if not simple:
