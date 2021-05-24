@@ -60,9 +60,9 @@ if __name__ == '__main__':
                         help="Don't save the automatically reconstructed soma volume along with the SWC (default)")
     parser.set_defaults(save_soma=False)
     
-    parser.add_argument('-p', '--soma-position', dest='soma_position', action='store_false',
+    parser.add_argument('-p', '--soma-position', dest='soma_position', action='store_true',
                         help='x: x-axis, y: y-axis, z: stack of the images. Example, [0,0,1]')
-    parser.set_defaults(save_soma=False)
+    parser.set_defaults(soma_position=False)
     
 
     # Args for tracing
@@ -138,7 +138,7 @@ if __name__ == '__main__':
                       clean=args.clean,
                       non_stop=args.non_stop,
                       skeletonize=args.skeletonize,
-                     somapos= arg.soma_position)
+                     somapos=args.soma_position)
     swc, soma = tracer.trace(img, args.threshold)
     print('-- Finshed: %.2f sec.' % (time.time() - starttime))
     
