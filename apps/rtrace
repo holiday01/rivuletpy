@@ -52,13 +52,6 @@ if __name__ == '__main__':
         type=float,
         default=1.,
         help='The factor to zoom the image to speed up the whole thing. Default 1.')
-    parser.add_argument(
-        '-p',
-        '--soma_position',
-        type=str,
-        default=None,
-        help='x: x-axis, y: y-axis, z: stack of the images. Example, [0,0,1]')
-
 
     # Arguments for soma detection
     parser.add_argument('--save-soma', dest='save_soma', action='store_true',
@@ -66,6 +59,11 @@ if __name__ == '__main__':
     parser.add_argument('--no-save-soma', dest='save_soma', action='store_false',
                         help="Don't save the automatically reconstructed soma volume along with the SWC (default)")
     parser.set_defaults(save_soma=False)
+    
+    parser.add_argument('-p', '--soma-position', dest='soma_position', action='store_false',
+                        help='x: x-axis, y: y-axis, z: stack of the images. Example, [0,0,1]')
+    parser.set_defaults(save_soma=False)
+    
 
     # Args for tracing
     parser.add_argument('--speed', dest='speed', action='store_true',
