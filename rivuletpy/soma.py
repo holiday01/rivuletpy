@@ -85,7 +85,7 @@ class Soma(object):
         # somaradius is just a float number
         somaradius = dt.max()
         
-        if somapos is None:
+        if somapos == False:
         # somapos : the coordinate of estimated soma centroid
         # the type of somapos is int64
         # the shape of somapos is (3,)
