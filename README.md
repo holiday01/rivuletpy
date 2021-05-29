@@ -51,9 +51,9 @@ optional arguments:
 ## 1. A example in the TIFF file
 ```
 automatically detect soma position using Rivuletpy method
-$ rtrace -f ../test.tif -t 10 -o new.swc
+$ rtrace -f ./test.tif -t 10 -o new.swc
 set custom of soma position
-$ rtrace -f ../test.tif -t 10 -o new.swc -p '168,102,10'
+$ rtrace -f ./test.tif -t 10 -o new.swc -p '168,102,10'
 ```
 
 ## Visulize the SWC file
