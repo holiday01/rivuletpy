@@ -57,7 +57,7 @@ if __name__ == '__main__':
         '--soma_position',
         type=str,
         default=None,
-        help='x: x-axis, y: y-axis, z: stack of the images. Example, [0,0,1]')
+        help='x: x-axis, y: y-axis, z: stack of the images. Example.')
 
 
     # Arguments for soma detection
