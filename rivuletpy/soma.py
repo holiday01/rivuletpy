@@ -62,11 +62,10 @@ class Soma(object):
         self.centroid[1] = self.centroid[1] - crop_region[1, 0]
         self.centroid[2] = self.centroid[2] - crop_region[2, 0]
 
-    def detect(self, bimg, simple=False, silent=False,somapos=False):
+    def detect(self, bimg, simple=False, silent=False,somapos=None):
         """
         Automatic detection of soma volume unless the iterations are given.
         """
-        self.somapos = somapos
         # Smooth iterations
         smoothing = 1
         # A float number controls the weight of internal energy
@@ -85,16 +84,14 @@ class Soma(object):
         # somaradius is just a float number
         somaradius = dt.max()
         
-        if somapos == False:
+        if somapos == None:
         # somapos : the coordinate of estimated soma centroid
         # the type of somapos is int64
         # the shape of somapos is (3,)
         # somapos is array-like
             somapos = np.asarray(np.unravel_index(dt.argmax(), dt.shape))
         else:
-            print("Custom of the soma position")
-            somapos = list(map(float, somapos.strip('[]').split(',')))
-            somapos = np.array(somapos)
+            somapos = np.array(somapos.split(',')).astype(int)
 
         # Soma detection is required
         if not simple:
